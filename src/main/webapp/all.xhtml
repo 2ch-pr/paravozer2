@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
+	<ui:define name="title">Паравозы</ui:define>
+	<ui:define name="content">
+
+
+
+		<h2>Паравозы</h2>
+
+
+
+		<h:form id="mainForm">
+
+
+		
+			<t:dataTable var="train" value="#{listTrains.trains}"
+				styleClass="standardTable" headerClass="standardTable_Header"
+				footerClass="standardTable_Header"
+				rowClasses="standardTable_Row1,standardTable_Row2"
+				columnClasses="standardTable_Column,standardTable_Column"
+				preserveDataModel="true" preserveSort="true" sortable="true">
+
+				<t:column>
+					<f:facet name="header">
+							<h:outputText value="Номир" />
+					</f:facet>
+
+					<h:outputLink
+						value="#{basePage.request.contextPath}/viewTrain.html">
+
+						<h:outputText value="#{train.trainNum}" />
+						<f:param name="id" value="#{train.trainNum}" />
+					</h:outputLink>
+
+				</t:column>
+
+				<t:column>
+
+					<f:facet name="header">
+						<h:outputText value="Куда едим" />
+					</f:facet>
+					<h:outputText value="#{train.destName}" />
+
+				</t:column>
+
+				<t:column>
+
+					<f:facet name="header">
+						<h:outputText value="Когда уезжаим" />
+					</f:facet>
+					<h:outputText value="#{train.startDT}" />
+				</t:column>
+
+
+			</t:dataTable>
+
+			<t:commandLink action="LIST_TRAINS">
+				<h:outputText value="Обновить" />
+			</t:commandLink> |
+			<h:commandLink action="EDIT_TRAIN">
+				<h:outputText value="Новый паравоз" />
+			</h:commandLink>
+
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

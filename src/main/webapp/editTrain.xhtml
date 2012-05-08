@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
+	<ui:define name="title">
+			<h:outputText value="Создаем паравоз" rendered="#{editTrain.train.blank}" />
+			<h:outputText value="Правим паравоз № #{editTrain.train.trainNum}" 
+			rendered="#{!editTrain.train.blank}" />
+     
+     </ui:define>
+
+	<ui:define name="head">
+
+	</ui:define>
+	
+	<ui:define name="content">
+
+		<h2>
+			<h:outputText value="Создаем паравоз" rendered="#{editTrain.train.blank}" />
+			<h:outputText value="Правим паравоз № #{editTrain.train.trainNum}" 
+			rendered="#{!editTrain.train.blank}" />
+		</h2>
+
+		<h:form>
+
+			<h:panelGrid styleClass="standardTable" columns="2">
+				<h:outputLabel for="trainNum" value="Номир" />
+				
+				<h:panelGroup rendered="#{!editTrain.train.blank}">
+				
+				<h:outputText value="#{editTrain.train.trainNum}" />
+				
+					<input type="hidden" name="id" value="#{editTrain.train.trainNum}"/>
+				
+				</h:panelGroup>
+				
+				<h:panelGroup rendered="#{editTrain.train.blank}">
+				
+				<t:message for="trainNum" styleClass="fieldError"/>				
+				<h:inputText id="trainNum" required="true"  rendered="#{editTrain.train.blank}"
+					value="#{editTrain.train.trainNum}" />
+				
+				</h:panelGroup>
+				
+				<h:outputLabel for="destName" value="Пункт назначения" />
+				<h:panelGroup>
+				<t:message for="destName" styleClass="fieldError"/>				
+				<h:inputText id="destName" required="true" value="#{editTrain.train.destName}" />
+				</h:panelGroup>
+				
+				
+				<h:outputLabel for="startDT" value="Дата отправления" />
+				 <t:inputCalendar  monthYearRowClass="yearMonthHeader" 
+                                              weekRowClass="weekHeader" displayValueOnlyStyleClass="desc"
+                                              popupButtonStyleClass="standard_bold" 
+                                              currentDayCellClass="currentDayCell" 
+                                              value="#{editTrain.train.startDT}" 
+                                              renderAsPopup="true"
+                                              popupDateFormat="dd.MM.yyyy" 
+                                              >
+                                              
+                                <f:convertDateTime 
+                                type="date" locale="#{basePage.request.locale.language}"
+                                 pattern="dd.MM.yyyy"/>
+                            </t:inputCalendar>
+                                              		
+			</h:panelGrid>
+
+
+			<h:outputLink value="#{basePage.request.contextPath}/all.html">
+				<h:outputText value="К паравозам" />
+			</h:outputLink> |
+			<h:commandLink action="#{editTrain.doSave}">
+				<h:outputText value="Сохраниццо" />
+			</h:commandLink>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

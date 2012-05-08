@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN" "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config >
+    <application>
+        <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+    </application>
+    
+    <managed-bean>
+        <managed-bean-name>listTrains</managed-bean-name>
+        <managed-bean-class>so.dvach.pr.faces.ListTrains</managed-bean-class>
+	<managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+
+    <managed-bean>
+        <managed-bean-name>viewTrain</managed-bean-name>
+        <managed-bean-class>so.dvach.pr.faces.ViewTrain</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>trainId</property-name>
+            <value>#{param.id}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>editTrain</managed-bean-name>
+        <managed-bean-class>so.dvach.pr.faces.EditTrain</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>trainId</property-name>
+            <value>#{param.id}</value>
+        </managed-property>
+    </managed-bean>
+
+
+    <managed-bean>
+        <managed-bean-name>basePage</managed-bean-name>
+        <managed-bean-class>so.dvach.pr.faces.BasePage</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+
+    <!-- navigation rules for helloWorld.jsp -->
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>LIST_TRAINS</from-outcome>
+            <to-view-id>/all.xhtml</to-view-id>
+            <redirect/>
+            
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>VIEW_TRAIN</from-outcome>
+            <to-view-id>/viewTrain.xhtml</to-view-id>
+            <redirect/>            
+        </navigation-case>
+    </navigation-rule>
+
+ <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>EDIT_TRAIN</from-outcome>
+            <to-view-id>/editTrain.xhtml</to-view-id>
+                  
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>

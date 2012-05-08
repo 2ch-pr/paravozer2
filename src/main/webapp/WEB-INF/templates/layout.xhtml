@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      >
+    <f:view>
+
+
+        <head>
+
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <!-- HTTP 1.1 -->
+            <meta http-equiv="Cache-Control" content="no-store, no-store, must-revalidate"/>
+            <!-- HTTP 1.0 -->
+            <meta http-equiv="Pragma" content="no-cache"/>
+            <!-- Prevents caching at the Proxy Server -->
+            <meta http-equiv="Expires" content="0"/>
+
+            <title><ui:insert name="title">Default page title</ui:insert></title>
+
+            <link rel="stylesheet" href="#{basePage.request.contextPath}/css/basic.css" type="text/css"/>
+			 <link rel="icon" href="#{basePage.request.contextPath}/images/train-icon.png"/>
+      
+                 <ui:insert name="head"></ui:insert>
+           
+        </head>
+        <body>
+
+      
+      		<div id="logo">
+      		<img src="#{basePage.request.contextPath}/images/train.png" border="0"/>
+      		</div>
+
+			<div>
+			
+			  <h:messages globalOnly="true" showSummary="true" showDetail="true"/>
+			
+			
+			</div>
+
+            <div id="content">
+                <ui:insert name="content">Default content</ui:insert>
+            </div>
+
+        </body>
+
+    </f:view>
+
+</html>
